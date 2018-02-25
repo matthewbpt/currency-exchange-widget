@@ -1,0 +1,129 @@
+.App {
+  display: flex;
+  justify-content: center;  
+  
+}
+
+.currency-exchange-widget {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.currency {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  /* padding-bottom: 5px; */
+  font-weight: bold;
+}
+
+.currency-name {
+  cursor: pointer;
+}
+
+.currency-exchange-balance {
+  color: rgb(139, 149, 158);
+  font-size: 10px;  
+}
+
+.currency-input {
+  height: 20px;
+}
+
+.currency-buy {
+  background: rgb(243, 244, 245);
+}
+
+.currency-input-sell::before  {
+  content: "-";
+}
+
+.currency-input-buy::before  {
+  content: "+";
+}
+
+.divider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 11px;
+  background:linear-gradient(180deg,white 50%, rgb(243, 244, 245) 50%);
+}
+
+.currency-swap {
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border: 2px solid rgb(243, 244, 245);
+  border-radius: 15px;
+  margin: 0 5px 0 5px;
+  color: rgb(0, 117, 235);
+  /* font-weight: bold; */
+  font-size: 18x;
+  cursor: pointer;
+  background-color:white;
+}
+
+
+
+.button-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  background-color:  rgb(243, 244, 245);
+  padding: 5px;
+}
+
+.button-exchange {
+  width: 75%;
+  height: 30px !important;
+  margin: 0 auto 0 auto !important;
+  border-radius: 15px !important;
+  
+}
+
+.exchange-rate {
+  text-align: center;
+  border: 2px solid rgb(243, 244, 245);
+  border-radius: 15px;
+  margin: 0 auto 0 auto;
+  color: rgb(0, 117, 235);
+  background-color:white;
+  /* font-weight: bold; */
+}
+
+.currency-list-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.currency-list-item-selected {
+  color: rgb(0, 117, 235) !important;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
