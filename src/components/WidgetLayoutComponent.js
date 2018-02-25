@@ -40,7 +40,7 @@ export const WidgetLayoutComponent = (props) => {
           <MdSwapVert />
         </div>
         <div className="exchange-rate">&nbsp;&nbsp;&nbsp;<MdTrendingUp />&nbsp;{`${sellSymbol}1 = ${buySymbol}${props.currentRate.toFixed(4)}`}&nbsp;&nbsp;&nbsp;</div>
-        <div style={{height: '20px', width: '20px', margin: '0 5px 0 5px'}}/>
+        <div style={{height: '25px', width: '25px', margin: '0 15px'}}/>
       </div>
       <CurrencyComponent
         amount={props.buy.amount}

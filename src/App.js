@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store={store}>
-          {/* <WidgetLayoutConnected height="calc(100vh)" width="calc(100vw)" /> */}
-          <WidgetLayoutConnected height="610px" width="400px" />
+          <WidgetLayoutConnected height="calc(100vh)" width="calc(100vw)" />
+          {/* <WidgetLayoutConnected height="610px" width="400px" /> */}
         </Provider>
       </div>
     );

@@ -1,13 +1,22 @@
 .App {
   display: flex;
-  /* width: 80%;   */
-  /* flex-direction: column; */
-  justify-content: center;  
+  justify-content: center;
+}
+
+@media only screen and (min-width: 800px) {
+  .currency-exchange-widget {
+    border-radius: 22.5px;
+    border: solid gray 10px;
+    padding: 10px 0px;
+    background: gray;
+    max-width: 400px;
+  }
 }
 
 .currency-exchange-widget {
   display: flex;
   flex-direction: column;
+  max-height: 610px;  
   /* flex-grow: 1; */
   /* margin: 0px; */
 }
@@ -24,8 +33,9 @@
 .currency-exchange-widget-top {
   display: flex;
   justify-content: space-between;
-  padding: 0px 15px;
+  padding: 10px 15px;
   font-size: 15px;
+  background: white;
 }
 
 .currency {
@@ -33,6 +43,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 35px 15px 35px 15px;
+  background: white;
 }
 
 .currency-name {
@@ -42,7 +53,8 @@
 
 .currency-exchange-balance {
   color: rgb(139, 149, 158);
-  font-size: 12px;  
+  font-size: 12px;
+  margin-top: 10px;
 }
 
 .currency-exchange-balance-warning {
