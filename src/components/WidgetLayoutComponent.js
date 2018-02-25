@@ -19,8 +19,13 @@ export const WidgetLayoutComponent = (props) => {
   const sellSymbol = getSymbolFromCurrency(props.sell.currency) || props.sell.currency;
   return (
     <div className="currency-exchange-widget" style={{ height: props.height, width: props.width}}>
-      <div style={{fontSize: '12px'}}>
+      <div className="currency-exchange-widget-top">
+      <div style={{fontSize: '15px'}}>
         <MdClose /> Exchange
+      </div>
+      <div class="trending-button">
+        <MdTrendingUp />
+      </div>
       </div>
       <CurrencyComponent
         amount={props.sell.amount}

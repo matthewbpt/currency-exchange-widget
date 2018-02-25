@@ -9,7 +9,23 @@
   display: flex;
   flex-direction: column;
   /* flex-grow: 1; */
-  margin: 10px;
+  /* margin: 0px; */
+}
+
+.trending-button {
+  color: white;
+  background-color: black;
+  height: 20px;
+  width: 20px;
+  border-radius: 15px;
+  font-size: 15px;
+}
+
+.currency-exchange-widget-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px;
+  font-size: 15px;
 }
 
 .currency {
@@ -17,8 +33,6 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 35px 15px 35px 15px;
-  /* padding-bottom: 5px; */
-  /* font-weight: bold; */
 }
 
 .currency-name {
@@ -29,6 +43,10 @@
 .currency-exchange-balance {
   color: rgb(139, 149, 158);
   font-size: 12px;  
+}
+
+.currency-exchange-balance-warning {
+  color: rgb(235, 0, 141);
 }
 
 .currency-input {

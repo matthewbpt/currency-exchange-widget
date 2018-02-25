@@ -10,15 +10,19 @@ export const CurrencyComponent = (props) => {
   const symbol = getSymbolFromCurrency(props.currency) || props.currency;
   const handleChange = (event) => props.onChange(parseFloat(striphtml(event.target.value) || 0));
   const handleCurrencyClick = () => props.onCurrencyClick(props.buy ? 'buy' : 'sell', props.currency);
+  const amount = formatMax2Decimal(props.amount);
+  const notEnoughBalance = !props.buy && (props.wallet ? props.wallet.balance : 0) < amount;
+
   return (
     <div className={`currency ${props.buy ? 'currency-buy' : 'currency-sell'}`}>
       <div className="currency-name" onClick={handleCurrencyClick}>
         {props.currency}<MdKeyboardArrowDown/>
-        <div className="currency-exchange-balance">Balance: {`${symbol}${balance}`}</div>
+        <div className={`currency-exchange-balance ${notEnoughBalance ? 'currency-exchange-balance-warning' : ''}`}>
+        Balance: {`${symbol}${balance}`}</div>
       </div>
       <ContentEditable
         className={`currency-input currency-input-${props.buy ? 'buy' : 'sell'}`}
-        html={formatMax2Decimal(props.amount)}
+        html={amount}
         onChange={handleChange} />
     </div>
   );
