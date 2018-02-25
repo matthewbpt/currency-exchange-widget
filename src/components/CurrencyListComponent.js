@@ -26,6 +26,7 @@ export class CurrencyListComponent extends Component {
 
     this.state = {
       other: false,
+      open: props.open,
     };
   }
 
@@ -40,15 +41,22 @@ export class CurrencyListComponent extends Component {
 
   onOtherClick = () => {
     this.setState({
-      other: !this.state.other,
+      open: false,
+      //other: !this.state.other,
+    }, () => this.setState({ open: true, other: !this.state.other}));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      open: nextProps.open,
     });
   }
 
   render() {
     return (
-      <Dialog open={this.props.open}>
-      <DialogTitle><span className="currency-list-title">Choose currency:</span></DialogTitle>
-        <List>
+      <Dialog open={this.state.open}>
+        <DialogTitle><span className="currency-list-title">Choose currency:</span></DialogTitle>
+        <List className="currency-list">
           {this.props.wallet.map(currency => {
             return (
               <CurrencyItem

@@ -93,6 +93,11 @@
   /* font-weight: bold; */
 }
 
+.currency-list {
+  max-height: 500px;
+  overflow: auto;
+}
+
 .currency-list-title {
   font-size: 18px;
   font-weight: bold;
