@@ -5,6 +5,9 @@ import {
   SWAP_CURRENCY,
   SHOW_CHANGE_CURRENCY,
   CHANGE_CURRENCY,
+  UPDATE_RATES,
+  SHOW_TOAST,
+  REFRESH_AMOUNTS,
 } from './actionTypes';
 
 export const currencyFromAmountAction = (amount) => ({
@@ -43,4 +46,18 @@ export const changeCurrencyAction = (buyOrSell, currency) => ({
     buyOrSell,
     currency,
   }
+});
+
+export const updateRatesAction = (currencyRates) => ({
+  type: UPDATE_RATES,
+  payload: currencyRates,
+});
+
+export const showToastAction = (message) => ({
+  type: SHOW_TOAST,
+  payload: message,
+});
+
+export const refreshAmountsActions = () => ({
+  type: REFRESH_AMOUNTS,
 });

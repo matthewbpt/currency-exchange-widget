@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MdClose from 'react-icons/lib/md/close';
 import { CurrencyComponent } from './components/CurrencyComponent';
@@ -10,11 +9,13 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import * as actions from './actions/actions';
 import Button from 'react-mdl/lib/Button';
-import IconButton from 'react-mdl/lib/IconButton';
 import find from 'lodash/find';
 import MdSwapVert from 'react-icons/lib/md/swap-vert';
 import getSymbolFromCurrency from 'currency-symbol-map';
 import { getExchangeRate } from './helpers/getExchangeRate';
+import Snackbar from 'react-mdl/lib/Snackbar';
+
+const noop = () => {};
 
 const CurrencyExchangeWidget = (props) => {
   const buySymbol =  getSymbolFromCurrency(props.buy.currency) || props.buy.currency;
@@ -62,6 +63,8 @@ const CurrencyExchangeWidget = (props) => {
         onCurrencyChange={props.onCurrencyChange}
         wallet={props.wallet}
         availableCurrencies={props.availableCurrencies}/>
+
+      <Snackbar active={!!props.toastMessage} onTimeout={noop}>{props.toastMessage}</Snackbar>
     </div>
   );
 }
@@ -80,8 +83,9 @@ const mapStateToProps = (state) => {
     changeCurrencyDialog: state.changeCurrencyDialog,
     wallet: state.wallet,
     availableCurrencies: Object.keys(state.currencyRates.rates),
+    toastMessage: state.toastMessage,
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

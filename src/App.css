@@ -14,13 +14,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 5px;
+  padding: 15px;
   /* padding-bottom: 5px; */
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .currency-name {
   cursor: pointer;
+  font-size: 20px;  
 }
 
 .currency-exchange-balance {
@@ -29,6 +30,7 @@
 }
 
 .currency-input {
+  font-size: 20px;
   height: 20px;
 }
 
@@ -66,22 +68,19 @@
   background-color:white;
 }
 
-
-
 .button-area {
   flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
   background-color:  rgb(243, 244, 245);
-  padding: 5px;
+  padding: 15px;
 }
 
 .button-exchange {
   width: 75%;
   height: 30px !important;
   margin: 0 auto 0 auto !important;
-  border-radius: 15px !important;
-  
+  border-radius: 15px !important;  
 }
 
 .exchange-rate {

@@ -1,30 +1,42 @@
 import { getExchangeRate } from '../helpers/getExchangeRate';
 import {
   CURRENCY_SELL_AMOUNT_CHANGE,
-  CURRENCY_BUY_AMOUNT_CHANGE,
+  REFRESH_AMOUNTS,
 } from '../actions/actionTypes';
 
-export const buyOrSellAmountReducer = ({ selectedExchangeCurrencies, currentRate, currencyRates }, action) => {
+export const buyOrSellAmountReducer = (state, action) => {
+  const { selectedExchangeCurrencies, currencyRates } = state;
   const { sell, buy } = selectedExchangeCurrencies;
 
-  if (action.type === CURRENCY_SELL_AMOUNT_CHANGE) {
+  const amount = action.type === REFRESH_AMOUNTS ? sell.amount : action.payload.amount;
+
+  if (action.type === CURRENCY_SELL_AMOUNT_CHANGE || action.type === REFRESH_AMOUNTS) {
     return {
-      sell: {
-        ...sell,
-        amount: action.payload.amount
-      },
-      buy: {
-        ...buy,
-        amount: action.payload.amount * getExchangeRate(sell.currency, buy.currency, currencyRates)
-      },
+      ...state,
+      selectedExchangeCurrencies: {
+        sell: {
+          ...sell,
+          amount: amount
+        },
+        buy: {
+          ...buy,
+          amount: amount * getExchangeRate(sell.currency, buy.currency, currencyRates)
+        },
+      }
     };
   } else {
     return {
-      buy: { ...buy, amount: action.payload.amount },
-      sell: {
-        ...sell,
-        amount: action.payload.amount * getExchangeRate(buy.currency, sell.currency, currencyRates)
-      },
-    };
+      ...state,
+      selectedExchangeCurrencies: {
+        buy: {
+          ...buy,
+          amount: amount
+        },
+        sell: {
+          ...sell,
+          amount: amount * getExchangeRate(buy.currency, sell.currency, currencyRates)
+        },
+      }
+    }
   }
 }

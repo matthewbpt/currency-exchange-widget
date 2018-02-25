@@ -16,8 +16,8 @@ export const initialState = {
     selected: false,
   }],
   selectedExchangeCurrencies: {
-    sell: { currency: 'GBP', amount: 0 },
-    buy: { currency: 'EUR', amount: 0 },
+    sell: { currency: 'GBP', amount: 10 },
+    buy: { currency: 'EUR', amount: 10 * (0.813206 / 0.715835) },
   },
   currencyRates: {
     'base': 'USD',

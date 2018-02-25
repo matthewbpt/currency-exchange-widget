@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import getSymbolFromCurrency from 'currency-symbol-map'
 import ContentEditable from 'react-contenteditable'
-import striptags from 'striptags';
+import striphtml from 'string-strip-html';
 import { formatMax2Decimal } from '../helpers/formatNumber';
 
 export const CurrencyComponent = (props) => {
   const balance = formatMax2Decimal(props.wallet ? props.wallet.balance : 0);
   const symbol = getSymbolFromCurrency(props.currency) || props.currency;
-  const handleChange = (event) => props.onChange(parseFloat(striptags(event.target.value) || 0));
+  const handleChange = (event) => props.onChange(parseFloat(striphtml(event.target.value) || 0));
   const handleCurrencyClick = () => props.onCurrencyClick(props.buy ? 'buy' : 'sell', props.currency);
   return (
     <div className={`currency ${props.buy ? 'currency-buy' : 'currency-sell'}`}>
