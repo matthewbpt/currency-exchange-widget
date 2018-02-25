@@ -9,43 +9,43 @@ import {
 import { initialState } from '../store/initialState';
 import { changeCurrencyReducer } from './changeCurrencyReducer';
 import { buyOrSellAmountReducer } from './buyOrSellAmountReducer';
-
-const updateBuyOrSellAmount = ({ selectedExchangeCurrencies, currentRate }, action) => {
-  const { sell, buy } = selectedExchangeCurrencies;
-
-  if (action.type === CURRENCY_SELL_AMOUNT_CHANGE) {
-    return {
-      sell: Object.assign({}, sell, { amount: action.payload.amount }),
-      buy: Object.assign({}, buy, {
-        amount: action.payload.amount * currentRate //calculateAmount(sell.currency, buy.currency, action.payload.amount, currencyRates)
-      }),
-    };
-  } else {
-    return {
-      buy: Object.assign({}, buy, { amount: action.payload.amount }),
-      sell: Object.assign({}, sell, {
-        amount: action.payload.amount / currentRate // calculateAmount(buy.currency, sell.currency, action.payload.amount, currencyRates)
-      }),
-    };
-  }
-}
+import find from 'lodash/find';
 
 const exchangeReducer = ({ wallet, selectedExchangeCurrencies, currencyRates }) => {  
-  return wallet.map(curr => {
-      if (curr.currency === selectedExchangeCurrencies.sell.currency) {
-        return Object.assign({}, curr, {
-          balance: curr.balance - selectedExchangeCurrencies.sell.amount,
-        });
-      }
 
-      if (curr.currency === selectedExchangeCurrencies.buy.currency) {
-        return Object.assign({}, curr, {
-          balance: curr.balance + selectedExchangeCurrencies.buy.amount,
-        });
-      }
+  const buyCurrency = find(wallet, { 
+    currency: selectedExchangeCurrencies.buy.currency,
+  }) || { currency: selectedExchangeCurrencies.buy.currency, balance: 0 };
 
-      return curr;
-    });
+  const sellCurrency = find(wallet, {
+    currency: selectedExchangeCurrencies.sell.currency,
+  }) || { currency: selectedExchangeCurrencies.sell.currency, balance: 0 };
+
+  return [{
+      ...buyCurrency,
+      balance: buyCurrency.balance + selectedExchangeCurrencies.buy.amount,
+    },{
+      ...sellCurrency,
+      balance: sellCurrency.balance - selectedExchangeCurrencies.sell.amount,
+    },
+    ...wallet.filter(c => c.currency !== buyCurrency.currency && c.currency !== sellCurrency.currency)
+  ];
+
+  // return wallet.map(curr => {
+  //     if (curr.currency === selectedExchangeCurrencies.sell.currency) {
+  //       return Object.assign({}, curr, {
+  //         balance: curr.balance - selectedExchangeCurrencies.sell.amount,
+  //       });
+  //     }
+
+  //     if (curr.currency === selectedExchangeCurrencies.buy.currency) {
+  //       return Object.assign({}, curr, {
+  //         balance: curr.balance + selectedExchangeCurrencies.buy.amount,
+  //       });
+  //     }
+
+  //     return curr;
+  //   });
 };
 
 export const reducer = (state = initialState, action) => {

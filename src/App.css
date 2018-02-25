@@ -99,8 +99,16 @@
   font-weight: bold;
 }
 
+.currency-list-item {
+  cursor: pointer !important;
+}
+
 .currency-list-item-selected {
   color: rgb(0, 117, 235) !important;
+}
+
+.currency-list-item-other {
+  border-top: 2px solid rgb(243, 244, 245);;
 }
 
 .App-logo {

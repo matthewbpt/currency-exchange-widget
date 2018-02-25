@@ -3,22 +3,7 @@ import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import getSymbolFromCurrency from 'currency-symbol-map'
 import ContentEditable from 'react-contenteditable'
 import striptags from 'striptags';
-
-const precision = (a) => {
-  if (!isFinite(a)) return 0;
-  let e = 1, p = 0;
-  while (Math.round(a * e) / e !== a) { e *= 10; p++; }
-  return p;
-}
-
-const formatMax2Decimal = (n) => {
-  const num = parseFloat(n);
-  if (precision(num) > 2) {
-    return num.toFixed(2);
-  }
-
-  return n.toString();
-}
+import { formatMax2Decimal } from '../helpers/formatNumber';
 
 export const CurrencyComponent = (props) => {
   const balance = formatMax2Decimal(props.wallet ? props.wallet.balance : 0);

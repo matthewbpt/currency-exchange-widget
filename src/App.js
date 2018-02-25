@@ -67,19 +67,19 @@ const CurrencyExchangeWidget = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  const sellWallet = find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.sell.currency);
-  const buyWallet = find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.buy.currency);
+  const sellWallet = find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.sell.currency) || { currency: state.selectedExchangeCurrencies.sell.currency, balance: 0 };
+  const buyWallet = find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.buy.currency) || { currency: state.selectedExchangeCurrencies.buy.currency, balance: 0 };
 
   return {
     sell: state.selectedExchangeCurrencies.sell,
     buy: state.selectedExchangeCurrencies.buy,
-    sellWallet: find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.sell.currency),
-    buyWallet: find(state.wallet, a => a.currency === state.selectedExchangeCurrencies.buy.currency),
-    exchangeDisabled: sellWallet.balance < state.selectedExchangeCurrencies.sell.amount,
+    sellWallet,
+    buyWallet,
+    exchangeDisabled: sellWallet.balance === 0 || sellWallet.balance < state.selectedExchangeCurrencies.sell.amount,
     currentRate: getExchangeRate(state.selectedExchangeCurrencies.sell.currency, state.selectedExchangeCurrencies.buy.currency, state.currencyRates),
     changeCurrencyDialog: state.changeCurrencyDialog,
     wallet: state.wallet,
-    currencyRates: Object.keys(state.currencyRates.rates),
+    availableCurrencies: Object.keys(state.currencyRates.rates),
   };
 }
 
