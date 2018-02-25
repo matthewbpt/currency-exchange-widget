@@ -1,3 +1,5 @@
+import isNaN from 'lodash/isNaN';
+
 const precision = (a) => {
   if (!isFinite(a)) return 0;
   let e = 1, p = 0;
@@ -7,6 +9,11 @@ const precision = (a) => {
 
 export const formatMax2Decimal = (n) => {
   const num = parseFloat(n);
+
+  if (isNaN(num)) {
+    return '0';
+  }
+
   if (precision(num) > 2) {
     return num.toFixed(2);
   }
