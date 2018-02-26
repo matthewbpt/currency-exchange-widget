@@ -10,10 +10,12 @@ import {
   REFRESH_AMOUNTS,
 } from '../actions/actionTypes';
 import { initialState } from '../store/initialState';
-import { changeCurrencyReducer } from './changeCurrencyReducer';
+import { changeCurrencyReducer, showChangeCurrencyReducer } from './changeCurrencyReducer';
 import { buyOrSellAmountReducer } from './buyOrSellAmountReducer';
 import { exchangeReducer } from './exchangeReducer';
 import { updateRatesReducer } from './updateRatesReducer';
+import { swapCurrencyReducer } from './swapCurrencyReducer';
+import { showToastReducer } from './showToastReducer';
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,33 +24,17 @@ export const reducer = (state = initialState, action) => {
     case REFRESH_AMOUNTS:
       return buyOrSellAmountReducer(state, action);
     case EXCHANGE:
-      return exchangeReducer(state);
+      return exchangeReducer(state, action);
     case SWAP_CURRENCY:
-      return {
-        ...state,
-        selectedExchangeCurrencies: {
-          buy: state.selectedExchangeCurrencies.sell,
-          sell: state.selectedExchangeCurrencies.buy,
-        },
-      };
+      return swapCurrencyReducer(state, action);
     case SHOW_CHANGE_CURRENCY:
-      return {
-        ...state,
-        changeCurrencyDialog: {
-          open: true,
-          buyOrSell: action.payload.buyOrSell,
-          currentCurrency: action.payload.currentCurrency,
-        },
-      };
+      return showChangeCurrencyReducer(state, action);
     case CHANGE_CURRENCY:
       return changeCurrencyReducer(state, action);
     case UPDATE_RATES:
       return updateRatesReducer(state, action);
     case SHOW_TOAST:
-      return {
-        ...state,
-        toastMessage: action.payload,
-      }
+      return showToastReducer(state, action);
     default:
       return state;
   }
