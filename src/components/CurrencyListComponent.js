@@ -94,6 +94,7 @@ export class CurrencyListComponent extends Component {
               <CurrencyItem
                 currency={currency}
                 balance={0}
+                selected={currency === this.props.currentCurrency}
                 key={currency}
                 onClick={this.onCurrencyClick(this.props.buyOrSell, currency)}              
                 /> 

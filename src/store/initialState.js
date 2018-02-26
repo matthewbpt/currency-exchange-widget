@@ -5,15 +5,12 @@ export const initialState = {
   wallet: [{
     currency: 'GBP',
     balance: 50.00,
-    selected: true,
   }, {
     currency: 'EUR',
     balance: 27.43,
-    selected: false,
   }, {
     currency: 'USD',
     balance: 121.12,
-    selected: false,
   }],
   selectedExchangeCurrencies: {
     sell: { currency: 'GBP', amount: 10 },
