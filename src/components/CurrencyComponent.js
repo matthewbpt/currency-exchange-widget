@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'react-proptypes';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import getSymbolFromCurrency from 'currency-symbol-map'
 import ContentEditable from 'react-contenteditable'
@@ -26,4 +27,15 @@ export const CurrencyComponent = (props) => {
         onChange={handleChange} />
     </div>
   );
+};
+
+CurrencyComponent.propTypes = {
+  currency: PropTypes.string,
+  amount: PropTypes.number,
+  onChange: PropTypes.func,
+  wallet: PropTypes.shape({
+    balance: PropTypes.number,
+  }),
+  onCurrencyClick: PropTypes.func,
+  buy: PropTypes.bool,
 };

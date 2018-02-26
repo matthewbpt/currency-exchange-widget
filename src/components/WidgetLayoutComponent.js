@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'react-proptypes';
 import MdClose from 'react-icons/lib/md/close';
 import { CurrencyComponent } from './CurrencyComponent';
 import { CurrencyListComponent } from './CurrencyListComponent';
@@ -23,7 +24,7 @@ export const WidgetLayoutComponent = (props) => {
       <div style={{fontSize: '15px'}}>
         <MdClose /> Exchange
       </div>
-      <div class="trending-button">
+      <div className="trending-button">
         <MdTrendingUp />
       </div>
       </div>
@@ -69,6 +70,29 @@ export const WidgetLayoutComponent = (props) => {
       <Snackbar active={!!props.toastMessage} onTimeout={noop}>{props.toastMessage}</Snackbar>
     </div>
   );
+};
+
+WidgetLayoutComponent.propTypes = {
+    sell: PropTypes.shape({ currency: PropTypes.string, amount: PropTypes.number }),
+    buy: PropTypes.shape({ currency: PropTypes.string, amount: PropTypes.number }),
+    sellWallet: PropTypes.shape({ currency: PropTypes.string, balance: PropTypes.number }),
+    buyWallet: PropTypes.shape({ currency: PropTypes.string, balance: PropTypes.number }),
+    exchangeDisabled: PropTypes.bool,
+    currentRate: PropTypes.number,
+    changeCurrencyDialog: PropTypes.shape({
+      open: PropTypes.bool,
+      buyOrSell: PropTypes.oneOf(['buy', 'sell']),
+      currentCurrency: PropTypes.string,
+    }),
+    wallet: PropTypes.arrayOf(PropTypes.shape({ currency: PropTypes.string, amount: PropTypes.number })),
+    availableCurrencies: PropTypes.arrayOf(PropTypes.string),
+    toastMessage: PropTypes.string,
+    onSellAmountChange: PropTypes.func,
+    onBuyAmountChange: PropTypes.func,
+    onExchangeClick: PropTypes.func,
+    onSwapClick: PropTypes.func,
+    onShowCurrencyClick: PropTypes.func,
+    onCurrencyChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

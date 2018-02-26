@@ -1,7 +1,7 @@
 {
   "name": "currency-exchange-widget",
   "version": "0.1.0",
-  "homepage" : "http://matthewbpt.github.io/currency-exchange-widget",
+  "homepage": "http://matthewbpt.github.io/currency-exchange-widget",
   "dependencies": {
     "currency-symbol-map": "^4.0.3",
     "lodash": "^4.17.5",
@@ -10,6 +10,7 @@
     "react-dom": "^16.2.0",
     "react-icons": "^2.2.7",
     "react-mdl": "^1.11.0",
+    "react-proptypes": "^1.0.0",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",

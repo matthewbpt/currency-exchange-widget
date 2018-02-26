@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'react-proptypes';
 import { List, ListItem, ListItemContent, ListItemAction } from 'react-mdl/lib/List';
 import { Dialog, DialogTitle } from 'react-mdl/lib/Dialog';
 import Icon from 'react-icons/lib/md/dashboard';
@@ -20,6 +21,13 @@ const CurrencyItem = (props) => {
   );
 };
 
+CurrencyItem.propTypes = {
+  currency: PropTypes.string,
+  balance: PropTypes.number,
+  selected: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+
 export class CurrencyListComponent extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +36,18 @@ export class CurrencyListComponent extends Component {
       other: false,
       open: props.open,
     };
+  }
+
+  static propTypes = {
+    open: PropTypes.bool,
+    currentCurrency: PropTypes.string,
+    wallet: PropTypes.arrayOf(PropTypes.shape({
+      currency: PropTypes.string,
+      balance: PropTypes.number,
+    })),
+    buyOrSell: PropTypes.oneOf(['buy', 'sell']),
+    availableCurrencies: PropTypes.arrayOf(PropTypes.string),
+    onCurrencyChange: PropTypes.func,
   }
 
   onCurrencyClick = (buyOrSell, currency) => {
@@ -42,7 +62,6 @@ export class CurrencyListComponent extends Component {
   onOtherClick = () => {
     this.setState({
       open: false,
-      //other: !this.state.other,
     }, () => this.setState({ open: true, other: !this.state.other}));
   }
 
